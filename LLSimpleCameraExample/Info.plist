@@ -39,7 +39,7 @@
 	<key>NSMicrophoneUsageDescription</key>
 	<string>$(EXECUTABLE_NAME) uses microphone</string>
 	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
+	<string>Launch Screen</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
