@@ -26,7 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     self.view.backgroundColor = [UIColor blackColor];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     
@@ -97,20 +97,28 @@
     
     [self.camera setOnRecordingTime:^(double recordedTime, double maxTime) {
         if(weakSelf.recordTimeProgress == nil ){
-            MRCircularProgressView *recordTimeProgress = [[MRCircularProgressView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+            MRCircularProgressView *recordTimeProgress = [[MRCircularProgressView alloc] initWithFrame:weakSelf.snapButton.frame];
             recordTimeProgress.center = CGPointMake(screenRect.size.width / 2.0f, screenRect.size.height / 2.0f);
-            [recordTimeProgress setProgress:recordedTime/maxTime animated:YES];
+            recordTimeProgress.bottom = weakSelf.view.height - 15.0f;
+            recordTimeProgress.tintColor = [UIColor whiteColor];
+            [recordTimeProgress setProgress:(float)(recordedTime/maxTime) animated:YES];
+            [recordTimeProgress setMayStop:YES];
+            [recordTimeProgress setUserInteractionEnabled:NO];
             weakSelf.recordTimeProgress = recordTimeProgress;
+            
             [weakSelf.view addSubview:weakSelf.recordTimeProgress];
         }else{
-            [weakSelf.recordTimeProgress setProgress:recordedTime/maxTime animated:YES];
+            if(self.recordTimeProgress.superview == nil){
+                [weakSelf.view addSubview:weakSelf.recordTimeProgress];
+            }
+            [weakSelf.recordTimeProgress setProgress:(float)(recordedTime/maxTime) animated:YES];
         }
         
         
         
     }];
     
-
+    
     // ----- camera buttons -------- //
     
     // snap button to capture image
@@ -226,16 +234,17 @@
             NSURL *outputURL = [[[self applicationDocumentsDirectory]
                                  URLByAppendingPathComponent:@"test1"] URLByAppendingPathExtension:@"mov"];
             [self.camera startRecordingWithOutputUrl:outputURL didRecord:^(LLSimpleCamera *camera, NSURL *outputFileUrl, NSError *error) {
-                
-                self.segmentedControl.hidden = NO;
-                self.flashButton.hidden = NO;
-                self.switchButton.hidden = NO;
-                
-                self.snapButton.layer.borderColor = [UIColor whiteColor].CGColor;
-                self.snapButton.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5];
-                [self.recordTimeProgress removeFromSuperview];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    weakSelf.segmentedControl.hidden = NO;
+                    weakSelf.flashButton.hidden = NO;
+                    weakSelf.switchButton.hidden = NO;
+                    
+                    weakSelf.snapButton.layer.borderColor = [UIColor whiteColor].CGColor;
+                    weakSelf.snapButton.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5];
+                    [weakSelf.recordTimeProgress removeFromSuperview];
+                });
                 VideoViewController *vc = [[VideoViewController alloc] initWithVideoUrl:outputFileUrl];
-                [self.navigationController pushViewController:vc animated:YES];
+                [weakSelf.navigationController pushViewController:vc animated:YES];
             }];
             
         } else {
