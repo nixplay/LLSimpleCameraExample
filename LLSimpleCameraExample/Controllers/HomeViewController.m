@@ -96,23 +96,25 @@
     }];
     
     [self.camera setOnRecordingTime:^(double recordedTime, double maxTime) {
-        if(weakSelf.recordTimeProgress == nil ){
-            MRCircularProgressView *recordTimeProgress = [[MRCircularProgressView alloc] initWithFrame:weakSelf.snapButton.frame];
-            recordTimeProgress.center = CGPointMake(screenRect.size.width / 2.0f, screenRect.size.height / 2.0f);
-            recordTimeProgress.bottom = weakSelf.view.height - 15.0f;
-            recordTimeProgress.tintColor = [UIColor whiteColor];
-            [recordTimeProgress setProgress:(float)(recordedTime/maxTime) animated:YES];
-            [recordTimeProgress setMayStop:YES];
-            [recordTimeProgress setUserInteractionEnabled:NO];
-            weakSelf.recordTimeProgress = recordTimeProgress;
-            
-            [weakSelf.view addSubview:weakSelf.recordTimeProgress];
-        }else{
-            if(self.recordTimeProgress.superview == nil){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if(weakSelf.recordTimeProgress == nil ){
+                MRCircularProgressView *recordTimeProgress = [[MRCircularProgressView alloc] initWithFrame:weakSelf.snapButton.frame];
+                recordTimeProgress.center = CGPointMake(screenRect.size.width / 2.0f, screenRect.size.height / 2.0f);
+                recordTimeProgress.bottom = weakSelf.view.height - 15.0f;
+                recordTimeProgress.tintColor = [UIColor whiteColor];
+                [recordTimeProgress setProgress:recordedTime/maxTime animated:YES];
+                [recordTimeProgress setMayStop:YES];
+                [recordTimeProgress setUserInteractionEnabled:NO];
+                weakSelf.recordTimeProgress = recordTimeProgress;
+                
                 [weakSelf.view addSubview:weakSelf.recordTimeProgress];
+            }else{
+                if(self.recordTimeProgress.superview == nil){
+                    [weakSelf.view addSubview:weakSelf.recordTimeProgress];
+                }
+                [weakSelf.recordTimeProgress setProgress:recordedTime/maxTime animated:YES];
             }
-            [weakSelf.recordTimeProgress setProgress:(float)(recordedTime/maxTime) animated:YES];
-        }
+        });
         
         
         
