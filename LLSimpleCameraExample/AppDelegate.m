@@ -8,6 +8,9 @@
 
 #import "AppDelegate.h"
 #import "HomeViewController.h"
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
+
 @interface AppDelegate ()
 
 @end
@@ -25,6 +28,8 @@
     self.window.rootViewController = navVC;
     
     [self.window makeKeyAndVisible];
+    [Fabric with:@[[Crashlytics class]]];
+
     return YES;
 }
 

@@ -3,11 +3,13 @@
 
 target 'LLSimpleCameraExample' do
   # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
-  # use_frameworks!
+  use_frameworks!
 
   # Pods for LLSimpleCameraExample
   pod 'LLSimpleCamera' , :git => 'https://github.com/nixplay/LLSimpleCamera' , :branch => 'develop'
   pod 'MRProgress'
+  pod 'Fabric'
+  pod 'Crashlytics'
 
   target 'LLSimpleCameraExampleTests' do
     inherit! :search_paths
