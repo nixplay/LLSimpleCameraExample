@@ -243,6 +243,7 @@
                     
                     weakSelf.snapButton.layer.borderColor = [UIColor whiteColor].CGColor;
                     weakSelf.snapButton.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5];
+                    [weakSelf.recordTimeProgress setProgress:0 animated:NO];
                     [weakSelf.recordTimeProgress removeFromSuperview];
                 });
                 VideoViewController *vc = [[VideoViewController alloc] initWithVideoUrl:outputFileUrl];
@@ -272,6 +273,10 @@
     
     self.snapButton.center = self.view.contentCenter;
     self.snapButton.bottom = self.view.height - 15.0f;
+    if(self.recordTimeProgress != nil){
+        self.recordTimeProgress.center = self.view.contentCenter;
+        self.recordTimeProgress.bottom = self.view.height - 15.0f;
+    }
     
     self.flashButton.center = self.view.contentCenter;
     self.flashButton.top = 5.0f;
