@@ -7,14 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		78CB1B704AA517AD3E75F519 /* libPods-LLSimpleCameraExampleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D7AD2AA585179D306F640F43 /* libPods-LLSimpleCameraExampleTests.a */; };
 		E3FDCBD71F4D6AAF00A88084 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FDCBD61F4D6AAF00A88084 /* AppDelegate.m */; };
-		E3FDCBDA1F4D6AAF00A88084 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FDCBD91F4D6AAF00A88084 /* ViewController.m */; };
-		E3FDCBDD1F4D6AAF00A88084 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3FDCBDB1F4D6AAF00A88084 /* Main.storyboard */; };
 		E3FDCBDF1F4D6AB000A88084 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3FDCBDE1F4D6AB000A88084 /* Assets.xcassets */; };
 		E3FDCBE21F4D6AB000A88084 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3FDCBE01F4D6AB000A88084 /* LaunchScreen.storyboard */; };
 		E3FDCBE51F4D6AB000A88084 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FDCBE41F4D6AB000A88084 /* main.m */; };
 		E3FDCBEF1F4D6AB000A88084 /* LLSimpleCameraExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FDCBEE1F4D6AB000A88084 /* LLSimpleCameraExampleTests.m */; };
 		E3FDCBFA1F4D6AB000A88084 /* LLSimpleCameraExampleUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FDCBF91F4D6AB000A88084 /* LLSimpleCameraExampleUITests.m */; };
+		E3FDCC201F4D722F00A88084 /* VideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FDCC141F4D722E00A88084 /* VideoViewController.m */; };
+		E3FDCC231F4D722F00A88084 /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FDCC1A1F4D722F00A88084 /* ImageViewController.m */; };
+		E3FDCC241F4D722F00A88084 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FDCC1C1F4D722F00A88084 /* HomeViewController.m */; };
+		E3FDCC481F4D76F400A88084 /* ViewUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FDCC441F4D76F300A88084 /* ViewUtils.m */; };
+		E3FDCC491F4D76F400A88084 /* UIImage+Crop.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FDCC451F4D76F300A88084 /* UIImage+Crop.m */; };
+		E3FDCC4A1F4D76F400A88084 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FDCC471F4D76F300A88084 /* UIImage+Resize.m */; };
+		E3FDCC521F4D772900A88084 /* camera-flash@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3FDCC4B1F4D772800A88084 /* camera-flash@2x.png */; };
+		E3FDCC531F4D772900A88084 /* cancel@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3FDCC4C1F4D772800A88084 /* cancel@3x.png */; };
+		E3FDCC541F4D772900A88084 /* camera-switch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3FDCC4D1F4D772800A88084 /* camera-switch@2x.png */; };
+		E3FDCC551F4D772900A88084 /* cancel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3FDCC4E1F4D772800A88084 /* cancel@2x.png */; };
+		E3FDCC561F4D772900A88084 /* camera-flash.png in Resources */ = {isa = PBXBuildFile; fileRef = E3FDCC4F1F4D772800A88084 /* camera-flash.png */; };
+		E3FDCC571F4D772900A88084 /* camera-switch.png in Resources */ = {isa = PBXBuildFile; fileRef = E3FDCC501F4D772800A88084 /* camera-switch.png */; };
+		E3FDCC581F4D772900A88084 /* cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = E3FDCC511F4D772800A88084 /* cancel.png */; };
+		F5C14C4FE3812424166BA4BB /* libPods-LLSimpleCameraExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E03ACBC05DAB684FD10313 /* libPods-LLSimpleCameraExample.a */; };
+		F774CEC89D1862200E57E9C9 /* libPods-LLSimpleCameraExampleUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BE1E47CAE681F7A42BFE397 /* libPods-LLSimpleCameraExampleUITests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,12 +49,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2131CF87C7FCDDB59879ECA6 /* Pods-LLSimpleCameraExampleUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLSimpleCameraExampleUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LLSimpleCameraExampleUITests/Pods-LLSimpleCameraExampleUITests.release.xcconfig"; sourceTree = "<group>"; };
+		3AB75E6C6F029F3C9B6C3C32 /* Pods-LLSimpleCameraExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLSimpleCameraExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-LLSimpleCameraExample/Pods-LLSimpleCameraExample.release.xcconfig"; sourceTree = "<group>"; };
+		4DC532CC6DB8433409D313E3 /* Pods-LLSimpleCameraExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLSimpleCameraExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LLSimpleCameraExample/Pods-LLSimpleCameraExample.debug.xcconfig"; sourceTree = "<group>"; };
+		8C74F68EF0DA45A89652BD2F /* Pods-LLSimpleCameraExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLSimpleCameraExampleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LLSimpleCameraExampleTests/Pods-LLSimpleCameraExampleTests.release.xcconfig"; sourceTree = "<group>"; };
+		9BE1E47CAE681F7A42BFE397 /* libPods-LLSimpleCameraExampleUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LLSimpleCameraExampleUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C2EC77F1FD7F49CC36EBC2F9 /* Pods-LLSimpleCameraExampleUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLSimpleCameraExampleUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LLSimpleCameraExampleUITests/Pods-LLSimpleCameraExampleUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		CAEC4C6C9CB0E80B59053301 /* Pods-LLSimpleCameraExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLSimpleCameraExampleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LLSimpleCameraExampleTests/Pods-LLSimpleCameraExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D7AD2AA585179D306F640F43 /* libPods-LLSimpleCameraExampleTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LLSimpleCameraExampleTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3FDCBD21F4D6AAF00A88084 /* LLSimpleCameraExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LLSimpleCameraExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3FDCBD51F4D6AAF00A88084 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E3FDCBD61F4D6AAF00A88084 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		E3FDCBD81F4D6AAF00A88084 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		E3FDCBD91F4D6AAF00A88084 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		E3FDCBDC1F4D6AAF00A88084 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E3FDCBDE1F4D6AB000A88084 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E3FDCBE11F4D6AB000A88084 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E3FDCBE31F4D6AB000A88084 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -51,6 +70,26 @@
 		E3FDCBF51F4D6AB000A88084 /* LLSimpleCameraExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LLSimpleCameraExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3FDCBF91F4D6AB000A88084 /* LLSimpleCameraExampleUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSimpleCameraExampleUITests.m; sourceTree = "<group>"; };
 		E3FDCBFB1F4D6AB000A88084 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E3FDCC141F4D722E00A88084 /* VideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoViewController.m; sourceTree = "<group>"; };
+		E3FDCC151F4D722E00A88084 /* ImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewController.h; sourceTree = "<group>"; };
+		E3FDCC171F4D722E00A88084 /* VideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoViewController.h; sourceTree = "<group>"; };
+		E3FDCC1A1F4D722F00A88084 /* ImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewController.m; sourceTree = "<group>"; };
+		E3FDCC1C1F4D722F00A88084 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		E3FDCC1F1F4D722F00A88084 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		E3FDCC421F4D76F300A88084 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
+		E3FDCC431F4D76F300A88084 /* ViewUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewUtils.h; sourceTree = "<group>"; };
+		E3FDCC441F4D76F300A88084 /* ViewUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewUtils.m; sourceTree = "<group>"; };
+		E3FDCC451F4D76F300A88084 /* UIImage+Crop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Crop.m"; sourceTree = "<group>"; };
+		E3FDCC461F4D76F300A88084 /* UIImage+Crop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Crop.h"; sourceTree = "<group>"; };
+		E3FDCC471F4D76F300A88084 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
+		E3FDCC4B1F4D772800A88084 /* camera-flash@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-flash@2x.png"; sourceTree = "<group>"; };
+		E3FDCC4C1F4D772800A88084 /* cancel@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel@3x.png"; sourceTree = "<group>"; };
+		E3FDCC4D1F4D772800A88084 /* camera-switch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-switch@2x.png"; sourceTree = "<group>"; };
+		E3FDCC4E1F4D772800A88084 /* cancel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel@2x.png"; sourceTree = "<group>"; };
+		E3FDCC4F1F4D772800A88084 /* camera-flash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-flash.png"; sourceTree = "<group>"; };
+		E3FDCC501F4D772800A88084 /* camera-switch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-switch.png"; sourceTree = "<group>"; };
+		E3FDCC511F4D772800A88084 /* cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cancel.png; sourceTree = "<group>"; };
+		F8E03ACBC05DAB684FD10313 /* libPods-LLSimpleCameraExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LLSimpleCameraExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5C14C4FE3812424166BA4BB /* libPods-LLSimpleCameraExample.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78CB1B704AA517AD3E75F519 /* libPods-LLSimpleCameraExampleTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,12 +113,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F774CEC89D1862200E57E9C9 /* libPods-LLSimpleCameraExampleUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1BAE6BDF06518860E641D88F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F8E03ACBC05DAB684FD10313 /* libPods-LLSimpleCameraExample.a */,
+				D7AD2AA585179D306F640F43 /* libPods-LLSimpleCameraExampleTests.a */,
+				9BE1E47CAE681F7A42BFE397 /* libPods-LLSimpleCameraExampleUITests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1FE68F0FB9C609AF1E595EF9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4DC532CC6DB8433409D313E3 /* Pods-LLSimpleCameraExample.debug.xcconfig */,
+				3AB75E6C6F029F3C9B6C3C32 /* Pods-LLSimpleCameraExample.release.xcconfig */,
+				CAEC4C6C9CB0E80B59053301 /* Pods-LLSimpleCameraExampleTests.debug.xcconfig */,
+				8C74F68EF0DA45A89652BD2F /* Pods-LLSimpleCameraExampleTests.release.xcconfig */,
+				C2EC77F1FD7F49CC36EBC2F9 /* Pods-LLSimpleCameraExampleUITests.debug.xcconfig */,
+				2131CF87C7FCDDB59879ECA6 /* Pods-LLSimpleCameraExampleUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		E3FDCBC91F4D6AAF00A88084 = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +150,8 @@
 				E3FDCBED1F4D6AB000A88084 /* LLSimpleCameraExampleTests */,
 				E3FDCBF81F4D6AB000A88084 /* LLSimpleCameraExampleUITests */,
 				E3FDCBD31F4D6AAF00A88084 /* Products */,
+				1FE68F0FB9C609AF1E595EF9 /* Pods */,
+				1BAE6BDF06518860E641D88F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,11 +168,10 @@
 		E3FDCBD41F4D6AAF00A88084 /* LLSimpleCameraExample */ = {
 			isa = PBXGroup;
 			children = (
+				E3FDCC361F4D726100A88084 /* Images */,
+				E3FDCC261F4D723600A88084 /* Controllers */,
 				E3FDCBD51F4D6AAF00A88084 /* AppDelegate.h */,
 				E3FDCBD61F4D6AAF00A88084 /* AppDelegate.m */,
-				E3FDCBD81F4D6AAF00A88084 /* ViewController.h */,
-				E3FDCBD91F4D6AAF00A88084 /* ViewController.m */,
-				E3FDCBDB1F4D6AAF00A88084 /* Main.storyboard */,
 				E3FDCBDE1F4D6AB000A88084 /* Assets.xcassets */,
 				E3FDCBE01F4D6AB000A88084 /* LaunchScreen.storyboard */,
 				E3FDCBE31F4D6AB000A88084 /* Info.plist */,
@@ -132,6 +198,39 @@
 			path = LLSimpleCameraExampleUITests;
 			sourceTree = "<group>";
 		};
+		E3FDCC261F4D723600A88084 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E3FDCC461F4D76F300A88084 /* UIImage+Crop.h */,
+				E3FDCC451F4D76F300A88084 /* UIImage+Crop.m */,
+				E3FDCC421F4D76F300A88084 /* UIImage+Resize.h */,
+				E3FDCC471F4D76F300A88084 /* UIImage+Resize.m */,
+				E3FDCC431F4D76F300A88084 /* ViewUtils.h */,
+				E3FDCC441F4D76F300A88084 /* ViewUtils.m */,
+				E3FDCC1F1F4D722F00A88084 /* HomeViewController.h */,
+				E3FDCC1C1F4D722F00A88084 /* HomeViewController.m */,
+				E3FDCC151F4D722E00A88084 /* ImageViewController.h */,
+				E3FDCC1A1F4D722F00A88084 /* ImageViewController.m */,
+				E3FDCC171F4D722E00A88084 /* VideoViewController.h */,
+				E3FDCC141F4D722E00A88084 /* VideoViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		E3FDCC361F4D726100A88084 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				E3FDCC4F1F4D772800A88084 /* camera-flash.png */,
+				E3FDCC4B1F4D772800A88084 /* camera-flash@2x.png */,
+				E3FDCC501F4D772800A88084 /* camera-switch.png */,
+				E3FDCC4D1F4D772800A88084 /* camera-switch@2x.png */,
+				E3FDCC511F4D772800A88084 /* cancel.png */,
+				E3FDCC4E1F4D772800A88084 /* cancel@2x.png */,
+				E3FDCC4C1F4D772800A88084 /* cancel@3x.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -139,9 +238,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E3FDCBFE1F4D6AB000A88084 /* Build configuration list for PBXNativeTarget "LLSimpleCameraExample" */;
 			buildPhases = (
+				62267AA10665BD4F9B430BCE /* [CP] Check Pods Manifest.lock */,
 				E3FDCBCE1F4D6AAF00A88084 /* Sources */,
 				E3FDCBCF1F4D6AAF00A88084 /* Frameworks */,
 				E3FDCBD01F4D6AAF00A88084 /* Resources */,
+				BF7C4BE00AB1300B1D450F29 /* [CP] Embed Pods Frameworks */,
+				5EAE2522C129A00117FA6422 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -156,9 +258,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E3FDCC011F4D6AB000A88084 /* Build configuration list for PBXNativeTarget "LLSimpleCameraExampleTests" */;
 			buildPhases = (
+				F59415347FD8E64EBBF82C5A /* [CP] Check Pods Manifest.lock */,
 				E3FDCBE61F4D6AB000A88084 /* Sources */,
 				E3FDCBE71F4D6AB000A88084 /* Frameworks */,
 				E3FDCBE81F4D6AB000A88084 /* Resources */,
+				E354802B54CAEEEDD2A8A669 /* [CP] Embed Pods Frameworks */,
+				F2782511A3A76106D6DBA6DA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -174,9 +279,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E3FDCC041F4D6AB000A88084 /* Build configuration list for PBXNativeTarget "LLSimpleCameraExampleUITests" */;
 			buildPhases = (
+				63D24E3062027FB0D19B9218 /* [CP] Check Pods Manifest.lock */,
 				E3FDCBF11F4D6AB000A88084 /* Sources */,
 				E3FDCBF21F4D6AB000A88084 /* Frameworks */,
 				E3FDCBF31F4D6AB000A88084 /* Resources */,
+				5722CB622470245C6F9CCDD5 /* [CP] Embed Pods Frameworks */,
+				753193A6DEB621E7F01E3563 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -235,9 +343,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3FDCC521F4D772900A88084 /* camera-flash@2x.png in Resources */,
+				E3FDCC531F4D772900A88084 /* cancel@3x.png in Resources */,
+				E3FDCC541F4D772900A88084 /* camera-switch@2x.png in Resources */,
 				E3FDCBE21F4D6AB000A88084 /* LaunchScreen.storyboard in Resources */,
+				E3FDCC571F4D772900A88084 /* camera-switch.png in Resources */,
+				E3FDCC561F4D772900A88084 /* camera-flash.png in Resources */,
+				E3FDCC581F4D772900A88084 /* cancel.png in Resources */,
+				E3FDCC551F4D772900A88084 /* cancel@2x.png in Resources */,
 				E3FDCBDF1F4D6AB000A88084 /* Assets.xcassets in Resources */,
-				E3FDCBDD1F4D6AAF00A88084 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,14 +371,166 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		5722CB622470245C6F9CCDD5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LLSimpleCameraExampleUITests/Pods-LLSimpleCameraExampleUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5EAE2522C129A00117FA6422 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LLSimpleCameraExample/Pods-LLSimpleCameraExample-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		62267AA10665BD4F9B430BCE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LLSimpleCameraExample-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		63D24E3062027FB0D19B9218 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LLSimpleCameraExampleUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		753193A6DEB621E7F01E3563 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LLSimpleCameraExampleUITests/Pods-LLSimpleCameraExampleUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BF7C4BE00AB1300B1D450F29 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LLSimpleCameraExample/Pods-LLSimpleCameraExample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E354802B54CAEEEDD2A8A669 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LLSimpleCameraExampleTests/Pods-LLSimpleCameraExampleTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F2782511A3A76106D6DBA6DA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LLSimpleCameraExampleTests/Pods-LLSimpleCameraExampleTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F59415347FD8E64EBBF82C5A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LLSimpleCameraExampleTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E3FDCBCE1F4D6AAF00A88084 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E3FDCBDA1F4D6AAF00A88084 /* ViewController.m in Sources */,
+				E3FDCC481F4D76F400A88084 /* ViewUtils.m in Sources */,
+				E3FDCC4A1F4D76F400A88084 /* UIImage+Resize.m in Sources */,
 				E3FDCBE51F4D6AB000A88084 /* main.m in Sources */,
+				E3FDCC201F4D722F00A88084 /* VideoViewController.m in Sources */,
+				E3FDCC491F4D76F400A88084 /* UIImage+Crop.m in Sources */,
 				E3FDCBD71F4D6AAF00A88084 /* AppDelegate.m in Sources */,
+				E3FDCC231F4D722F00A88084 /* ImageViewController.m in Sources */,
+				E3FDCC241F4D722F00A88084 /* HomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,14 +566,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		E3FDCBDB1F4D6AAF00A88084 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E3FDCBDC1F4D6AAF00A88084 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		E3FDCBE01F4D6AB000A88084 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -425,6 +683,7 @@
 		};
 		E3FDCBFF1F4D6AB000A88084 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4DC532CC6DB8433409D313E3 /* Pods-LLSimpleCameraExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = FLA95J3G7U;
@@ -438,6 +697,7 @@
 		};
 		E3FDCC001F4D6AB000A88084 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3AB75E6C6F029F3C9B6C3C32 /* Pods-LLSimpleCameraExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = FLA95J3G7U;
@@ -451,6 +711,7 @@
 		};
 		E3FDCC021F4D6AB000A88084 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CAEC4C6C9CB0E80B59053301 /* Pods-LLSimpleCameraExampleTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = FLA95J3G7U;
@@ -465,6 +726,7 @@
 		};
 		E3FDCC031F4D6AB000A88084 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8C74F68EF0DA45A89652BD2F /* Pods-LLSimpleCameraExampleTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = FLA95J3G7U;
@@ -479,6 +741,7 @@
 		};
 		E3FDCC051F4D6AB000A88084 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C2EC77F1FD7F49CC36EBC2F9 /* Pods-LLSimpleCameraExampleUITests.debug.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = FLA95J3G7U;
 				INFOPLIST_FILE = LLSimpleCameraExampleUITests/Info.plist;
@@ -492,6 +755,7 @@
 		};
 		E3FDCC061F4D6AB000A88084 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2131CF87C7FCDDB59879ECA6 /* Pods-LLSimpleCameraExampleUITests.release.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = FLA95J3G7U;
 				INFOPLIST_FILE = LLSimpleCameraExampleUITests/Info.plist;
