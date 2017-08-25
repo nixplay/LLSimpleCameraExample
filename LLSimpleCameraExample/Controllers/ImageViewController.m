@@ -9,12 +9,13 @@
 #import "ImageViewController.h"
 #import "ViewUtils.h"
 #import "UIImage+Crop.h"
-
+@import Photos;
 @interface ImageViewController ()
 @property (strong, nonatomic) UIImage *image;
 @property (strong, nonatomic) UIImageView *imageView;
 @property (strong, nonatomic) UILabel *infoLabel;
 @property (strong, nonatomic) UIButton *cancelButton;
+@property (strong, nonatomic) UIButton *saveButton;
 @end
 
 @implementation ImageViewController
@@ -51,6 +52,11 @@
     self.infoLabel.text = info;
     [self.view addSubview:self.infoLabel];
     
+    [self.view addSubview:self.saveButton];
+    [self.saveButton addTarget:self action:@selector(saveButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    self.saveButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+    self.saveButton.frame = CGRectMake(screenRect.size.width - 100 , screenRect.size.height - 50 , 100 , 50);
+    
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)];
     [self.view addGestureRecognizer:tapGesture];
 }
@@ -78,5 +84,92 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (UIButton *)saveButton {
+    if(!_saveButton) {
+        
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+        button.tintColor = [UIColor whiteColor];
+        [button setTitle:@"Save" forState:UIControlStateNormal];
+        button.imageView.clipsToBounds = NO;
+        button.contentEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
+        button.layer.shadowColor = [UIColor blackColor].CGColor;
+        button.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
+        button.layer.shadowOpacity = 0.4f;
+        button.layer.shadowRadius = 1.0f;
+        button.clipsToBounds = NO;
+        [button sizeToFit];
+        _saveButton = button;
+    }
+    
+    return _saveButton;
+}
+
+- (void)saveButtonPressed:(UIButton *)button {
+    NSLog(@"save button pressed!");
+    dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+    
+    if ([PHObject class]) {
+        __block PHAssetChangeRequest *assetRequest;
+        __block PHObjectPlaceholder *placeholder;
+        __block PHFetchOptions *fetchOptions;
+        // Save to the album
+        [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+            PHAssetCollection *collection = [self getAPPCollection];
+            if(collection != nil){
+                [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+                    
+                    
+                    assetRequest = [PHAssetChangeRequest creationRequestForAssetFromImage:self.image];
+                    placeholder = [assetRequest placeholderForCreatedAsset];
+                    fetchOptions = [[PHFetchOptions alloc] init];
+                    
+                    PHFetchResult *photosAsset = [PHAsset fetchAssetsInAssetCollection:collection options:nil];
+                    PHAssetCollectionChangeRequest *albumChangeRequest = [PHAssetCollectionChangeRequest changeRequestForAssetCollection:collection
+                                                                                                                                  assets:photosAsset];
+                    [albumChangeRequest addAssets:@[placeholder]];
+                } completionHandler:^(BOOL success, NSError *error) {
+                    if (success) {
+                        NSString *localIdentifier = placeholder.localIdentifier;
+                        NSLog(@"localIdentifier %@", localIdentifier);
+                        
+                        dispatch_semaphore_signal(sema);
+                    }
+                    else {
+                        NSLog(@"%@", error);
+                        dispatch_semaphore_signal(sema);
+                    }
+                }];
+            }
+        }];
+    }
+    
+    [self dismissViewControllerAnimated:NO completion:nil];
+}
+
+- (PHAssetCollection *)getAPPCollection {
+    // Getting the app album if any:
+    PHFetchResult<PHAssetCollection *> *collectionResult = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
+    NSString *appName =      [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleNameKey];
+    //    NSString *appName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"];
+    for (PHAssetCollection *collection in collectionResult) {
+        if ([collection.localizedTitle isEqualToString:appName]) {
+            return collection;
+        }
+    }
+    
+    // Creating the album:
+    __block NSString *collectionId = nil;
+    NSError *error = nil;
+    [[PHPhotoLibrary sharedPhotoLibrary] performChangesAndWait:^{
+        collectionId = [PHAssetCollectionChangeRequest creationRequestForAssetCollectionWithTitle:appName].placeholderForCreatedAssetCollection.localIdentifier;
+    } error:&error];
+    if (error) {
+        NSLog(@"Create album：%@ failed", appName);
+        return nil;
+    }
+    return [PHAssetCollection fetchAssetCollectionsWithLocalIdentifiers:@[collectionId] options:nil].lastObject;
+}
+
 
 @end
