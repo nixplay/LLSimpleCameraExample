@@ -14,6 +14,7 @@
 @interface HomeViewController ()
 @property (strong, nonatomic) LLSimpleCamera *camera;
 @property (strong, nonatomic) UILabel *errorLabel;
+@property (strong, nonatomic) UILabel *timeLabel;
 @property (strong, nonatomic) MRCircularProgressView *recordTimeProgress;
 @property (strong, nonatomic) UIButton *snapButton;
 @property (strong, nonatomic) UIButton *switchButton;
@@ -38,7 +39,7 @@
     self.camera = [[LLSimpleCamera alloc] initWithQuality:AVCaptureSessionPresetHigh
                                                  position:LLCameraPositionRear
                                              videoEnabled:YES];
-    self.camera.maximumVideoDuration = 10;
+    self.camera.maximumVideoDuration = 10;//in second
     // attach to a view controller
     [self.camera attachToViewController:self withFrame:CGRectMake(0, 0, screenRect.size.width, screenRect.size.height)];
     
@@ -97,22 +98,42 @@
     
     [self.camera setOnRecordingTime:^(double recordedTime, double maxTime) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            if(weakSelf.recordTimeProgress == nil ){
-                MRCircularProgressView *recordTimeProgress = [[MRCircularProgressView alloc] initWithFrame:weakSelf.snapButton.frame];
-                recordTimeProgress.center = CGPointMake(screenRect.size.width / 2.0f, screenRect.size.height / 2.0f);
-                recordTimeProgress.bottom = weakSelf.view.height - 15.0f;
-                recordTimeProgress.tintColor = [UIColor whiteColor];
-                [recordTimeProgress setProgress:recordedTime/maxTime animated:YES];
-                [recordTimeProgress setMayStop:YES];
-                [recordTimeProgress setUserInteractionEnabled:NO];
-                weakSelf.recordTimeProgress = recordTimeProgress;
-                
-                [weakSelf.view addSubview:weakSelf.recordTimeProgress];
-            }else{
-                if(self.recordTimeProgress.superview == nil){
+            if(weakSelf.camera.isRecording){
+                if(weakSelf.recordTimeProgress == nil ){
+                    UILabel *timeLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 12)];
+                    timeLabel.layer.cornerRadius = timeLabel.size.height*0.5f;
+                    timeLabel.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+                    timeLabel.center = CGPointMake(screenRect.size.width / 2.0f, screenRect.size.height / 2.0f);
+                    timeLabel.top = timeLabel.size.height+10;
+                    timeLabel.textColor = [UIColor whiteColor];
+                    timeLabel.text = [weakSelf timeFormatted:floor(recordedTime)];
+                    [timeLabel sizeToFit];
+                    weakSelf.timeLabel = timeLabel;
+                    [weakSelf.view addSubview:weakSelf.timeLabel];
+                    
+                    MRCircularProgressView *recordTimeProgress = [[MRCircularProgressView alloc] initWithFrame:CGRectZero];
+                    recordTimeProgress.center = CGPointMake(screenRect.size.width / 2.0f, screenRect.size.height / 2.0f);
+                    recordTimeProgress.tintColor = [UIColor whiteColor];
+                    recordTimeProgress.lineWidth = 5;
+                    [recordTimeProgress setProgress:recordedTime/maxTime animated:YES];
+                    [recordTimeProgress setMayStop:YES];
+                    [recordTimeProgress setUserInteractionEnabled:NO];
+                    
+                    recordTimeProgress.size = CGSizeMake(weakSelf.snapButton.width, weakSelf.snapButton.width);
+                    weakSelf.recordTimeProgress = recordTimeProgress;
+                    
                     [weakSelf.view addSubview:weakSelf.recordTimeProgress];
+                }else{
+                    if(self.recordTimeProgress.superview == nil){
+                        [weakSelf.view addSubview:weakSelf.recordTimeProgress];
+                    }
+                    if(self.timeLabel.superview ==nil){
+                        [weakSelf.view addSubview:weakSelf.timeLabel];
+                    }else{
+                        weakSelf.timeLabel.text = [weakSelf timeFormatted:floor(recordedTime)];
+                    }
+                    [weakSelf.recordTimeProgress setProgress:recordedTime/maxTime animated:YES];
                 }
-                [weakSelf.recordTimeProgress setProgress:recordedTime/maxTime animated:YES];
             }
         });
         
@@ -134,6 +155,10 @@
     self.snapButton.layer.rasterizationScale = [UIScreen mainScreen].scale;
     self.snapButton.layer.shouldRasterize = YES;
     [self.snapButton addTarget:self action:@selector(snapButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
+    [self.snapButton addGestureRecognizer:longPress];
+    
     [self.view addSubview:self.snapButton];
     
     // button to toggle flash
@@ -163,6 +188,18 @@
     [self.segmentedControl addTarget:self action:@selector(segmentedControlValueChanged:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:self.segmentedControl];
 }
+
+
+- (NSString *)timeFormatted:(int)totalSeconds
+{
+    
+    int seconds = totalSeconds % 60;
+    int minutes = (totalSeconds / 60) % 60;
+    int hours = totalSeconds / 3600;
+    
+    return [NSString stringWithFormat:@"%02d:%02d:%02d",hours, minutes, seconds];
+}
+
 
 - (void)segmentedControlValueChanged:(UISegmentedControl *)control
 {
@@ -224,42 +261,98 @@
         } exactSeenImage:YES];
         
     } else {
-        if(!self.camera.isRecording) {
-            self.segmentedControl.hidden = YES;
-            self.flashButton.hidden = YES;
-            self.switchButton.hidden = YES;
-            
-            self.snapButton.layer.borderColor = [UIColor redColor].CGColor;
-            self.snapButton.backgroundColor = [[UIColor redColor] colorWithAlphaComponent:0.5];
-            
-            // start recording
-            NSURL *outputURL = [[[self applicationDocumentsDirectory]
-                                 URLByAppendingPathComponent:@"test1"] URLByAppendingPathExtension:@"mov"];
-            [self.camera startRecordingWithOutputUrl:outputURL didRecord:^(LLSimpleCamera *camera, NSURL *outputFileUrl, NSError *error) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    weakSelf.segmentedControl.hidden = NO;
-                    weakSelf.flashButton.hidden = NO;
-                    weakSelf.switchButton.hidden = NO;
-                    
-                    weakSelf.snapButton.layer.borderColor = [UIColor whiteColor].CGColor;
-                    weakSelf.snapButton.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5];
-                    [weakSelf.recordTimeProgress setProgress:0 animated:NO];
-                    [weakSelf.recordTimeProgress removeFromSuperview];
-                });
-                VideoViewController *vc = [[VideoViewController alloc] initWithVideoUrl:outputFileUrl];
-                [weakSelf.navigationController pushViewController:vc animated:YES];
-            }];
-            
-        } else {
-            self.segmentedControl.hidden = NO;
-            self.flashButton.hidden = NO;
-            self.switchButton.hidden = NO;
-            
-            self.snapButton.layer.borderColor = [UIColor whiteColor].CGColor;
-            self.snapButton.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5];
-            
-            [self.camera stopRecording];
+        [self toggleVideoRecording];
+    }
+}
+
+-(void) longPress:(UILongPressGestureRecognizer*)sender {
+    switch(sender.state){
+        case UIGestureRecognizerStatePossible:
+            NSLog(@"UIGestureRecognizerStatePossible.");
+            break;
+        case UIGestureRecognizerStateBegan:
+            NSLog(@"UIGestureRecognizerStateBegan.");
+            if(!self.camera.isRecording) {
+                [self startRecording];
+                
+            }
+            break;
+        case
+        UIGestureRecognizerStateChanged:
+            NSLog(@"UIGestureRecognizerStateChanged.");
+            break;
+        case UIGestureRecognizerStateEnded:
+            NSLog(@"UIGestureRecognizerStateEnded.");
+            if(self.camera.isRecording){
+                [self stopRecording];
+            }
+
+            break;
+        case UIGestureRecognizerStateCancelled:
+            NSLog(@"UIGestureRecognizerStateCancelled.");
+            break;
+        case UIGestureRecognizerStateFailed:
+            NSLog(@"UIGestureRecognizerStateFailed.");
+            break;
+    }
+}
+
+-(void) toggleVideoRecording{
+    
+    if(!self.camera.isRecording) {
+        [self startRecording];
+        
+    } else {
+        [self stopRecording];
+    }
+}
+
+-(void) startRecording{
+    __weak typeof(self) weakSelf = self;
+    if(!self.camera.isRecording) {
+        self.segmentedControl.hidden = YES;
+        self.flashButton.hidden = YES;
+        self.switchButton.hidden = YES;
+        if(self.timeLabel){
+            self.timeLabel.hidden = NO;
         }
+        self.snapButton.layer.borderColor = [UIColor redColor].CGColor;
+        self.snapButton.backgroundColor = [[UIColor redColor] colorWithAlphaComponent:0.5];
+        
+        // start recording
+        NSURL *outputURL = [[[self applicationDocumentsDirectory]
+                             URLByAppendingPathComponent:@"test1"] URLByAppendingPathExtension:@"mov"];
+        [self.camera startRecordingWithOutputUrl:outputURL didRecord:^(LLSimpleCamera *camera, NSURL *outputFileUrl, NSError *error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                weakSelf.segmentedControl.hidden = NO;
+                weakSelf.flashButton.hidden = NO;
+                weakSelf.switchButton.hidden = NO;
+                if(weakSelf.timeLabel){
+                    weakSelf.timeLabel.hidden = YES;
+                }
+                weakSelf.snapButton.layer.borderColor = [UIColor whiteColor].CGColor;
+                weakSelf.snapButton.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5];
+                [weakSelf.recordTimeProgress setProgress:0 animated:NO];
+                [weakSelf.recordTimeProgress removeFromSuperview];
+            });
+            VideoViewController *vc = [[VideoViewController alloc] initWithVideoUrl:outputFileUrl];
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        }];
+    }
+}
+
+-(void) stopRecording{
+    if(self.camera.isRecording){
+        self.segmentedControl.hidden = NO;
+        self.flashButton.hidden = NO;
+        self.switchButton.hidden = NO;
+        if(self.timeLabel){
+            self.timeLabel.hidden = YES;
+        }
+        self.snapButton.layer.borderColor = [UIColor whiteColor].CGColor;
+        self.snapButton.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5];
+        
+        [self.camera stopRecording];
     }
 }
 
@@ -277,7 +370,10 @@
         self.recordTimeProgress.center = self.view.contentCenter;
         self.recordTimeProgress.bottom = self.view.height - 15.0f;
     }
-    
+    if(self.timeLabel != nil){
+        self.timeLabel.center = self.view.contentCenter;
+        self.timeLabel.bottom = self.timeLabel.size.height+10;
+    }
     self.flashButton.center = self.view.contentCenter;
     self.flashButton.top = 5.0f;
     
